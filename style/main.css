@@ -82,6 +82,8 @@ main {
   background-color: #fff;
   opacity: 80%;
   padding: .5rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
   border-radius: .3rem;
   box-shadow: 4px 4px 7px silver;
 }
@@ -100,7 +102,8 @@ main {
   outline: 1px solid white;
   background-color: rgba(255, 255, 255, 0.2);
   padding: 0%;
-  cursor: help;
+  cursor: pointer;
+  transition: all 200ms ease;
 }
 
 /*
