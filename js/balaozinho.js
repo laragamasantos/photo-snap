@@ -1,10 +1,11 @@
 let mensagem = document.querySelector('#balaozinho');
-let balaozinhosEl = document.querySelectorAll('.marcacao');
+let marcacoessEl = document.querySelectorAll('.marcacao');
 let inputX = document.querySelector('#marcacao-x');
 let inputY = document.querySelector('#marcacao-y');
 let inputH = document.querySelector('#marcacao-altura');
 let inputW = document.querySelector('#marcacao-largura');
 let inputsEl = document.querySelectorAll('input');
+let marcacaoAtualEl;
 
 function texto(e){
     let apareceBalao = e.currentTarget;
@@ -21,13 +22,20 @@ function limpaTexto(){
     mensagem.style.display = 'none';
 }
 
-function posicionaMarcacao(){
-    balaozinhosEl[0].style.left = `${inputX.value}px`;
-    balaozinhosEl[0].style.top = `${inputY.value}px`;
-    balaozinhosEl[0].style.height = `${inputH.value}px`;
-    balaozinhosEl[0].style.width = `${inputW.value}px`;
+function seleciona(e){
+    marcacoessEl.forEach(el => el.classList.remove('selecionada'));
+    marcacaoAtualEl = e.currentTarget;
+    marcacaoAtualEl.classList.add('selecionada');
 }
 
-balaozinhosEl.forEach(el => el.addEventListener('mousemove', texto));
-balaozinhosEl.forEach(el => el.addEventListener('mouseout', limpaTexto));
+function posicionaMarcacao(){
+    marcacaoAtualEl.style.left = `${inputX.value}px`;
+    marcacaoAtualEl.style.top = `${inputY.value}px`;
+    marcacaoAtualEl.style.height = `${inputH.value}px`;
+    marcacaoAtualEl.style.width = `${inputW.value}px`;
+}
+
+marcacoessEl.forEach(el => el.addEventListener('click', seleciona));
+marcacoessEl.forEach(el => el.addEventListener('mousemove', texto));
+marcacoessEl.forEach(el => el.addEventListener('mouseout', limpaTexto));
 inputsEl.forEach(el => el.addEventListener('keydown', posicionaMarcacao));
